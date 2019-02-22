@@ -1,0 +1,22 @@
+function main(splash, args)
+  assert(splash:go(args.url))
+  assert(splash:wait(0.5))
+  local name, password
+  name = splash:select('#username')
+  name:send_keys('minmin520')
+  local bf_c = splash:select('#tx')
+  bf_c:mouse_click{}
+  password = splash:select('#password')
+  password:send_keys('minmin520')
+  --
+  assert(splash:wait(0.5))
+  local commit = splash:select('#login-btn')
+  commit:mouse_click{}
+  assert(splash:wait(2))
+  assert(splash:go("https://www.guangdiancaifu.com/"))
+  return {
+    html = splash:html(),
+    png = splash:png(),
+    --har = splash:har(),
+  }
+end
